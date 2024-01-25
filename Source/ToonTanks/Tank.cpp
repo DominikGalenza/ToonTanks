@@ -23,6 +23,27 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
+
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (PlayerControllerReference)
+	{
+		FHitResult HitResult;
+		PlayerControllerReference->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+
+		RotateTurret(HitResult.ImpactPoint);
+	}
+}
+
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	PlayerControllerReference = Cast<APlayerController>(GetController());
+}
+
 void ATank::Move(float Value)
 {
 	FVector DeltaLocation(0.f);
