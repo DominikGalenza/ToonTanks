@@ -16,15 +16,12 @@ class TOONTANKS_API ATank : public ABasePawn
 	
 public:
 	ATank();
-
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 	void HandleDestruction();
 
 	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
+	bool bAlive = true;
 
 protected:
 	// Called when the game starts or when spawned
@@ -33,13 +30,10 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class USpringArmComponent* SpringArm;
-
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	class UCameraComponent* Camera;
-
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float Speed = 500.f;
-
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurnRate = 100.f;
 
