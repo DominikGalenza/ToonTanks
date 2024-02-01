@@ -32,6 +32,8 @@ private:
 	float Damage = 50.f;
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	class UParticleSystem* HitParticles;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UParticleSystemComponent* TrailParticles;
 
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
